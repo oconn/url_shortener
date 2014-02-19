@@ -1,5 +1,6 @@
 <h2>Your short URL is:</h2>
-<p><%= "http://www.mn.com/#{params[:short_url]}" %></p>
+<p><%= @full_url %> redirects to:</p>
+<p><%= "http:// mn.com/#{params[:short_url]}" %></p>
 
 <h2>New URL</h2>
 <form action="/urls" method="post">

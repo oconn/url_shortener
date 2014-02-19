@@ -2,12 +2,17 @@ get '/' do
   erb :index
 end
 
+get '/show/:short_url' do
+  redirect to('/') if Url.where(short_url: params[:short_url]).empty?
+  @full_url = Url.where(short_url: params[:short_url]).first.url
+  erb :short_url
+end
+
 # e.g., /q6bda
 get '/:short_url' do
-  @full_site = Url.where(short_url: params[:short_url]).first.url )
-  erb :short_url
-  # erb :index
-  # redirect to appropriate "long" URL
+  redirect to('/') if Url.where(short_url: params[:short_url]).empty?
+  @full_url = Url.where(short_url: params[:short_url]).first.url
+  redirect to("#{@full_url}")
 end
 
 post '/urls' do
@@ -17,6 +22,6 @@ post '/urls' do
   else
     @short = Url.where(url: params[:url]).first.short_url
   end
-  redirect to("/#{@short}")
+  redirect to("/show/#{@short}")
 end
 
