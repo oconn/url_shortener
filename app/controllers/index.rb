@@ -4,15 +4,17 @@ end
 
 get '/show/:short_url' do
   redirect to('/') if Url.where(short_url: params[:short_url]).empty?
-  @full_url = Url.where(short_url: params[:short_url]).first.url
+  @url = Url.where(short_url: params[:short_url]).first
   erb :short_url
 end
 
 # e.g., /q6bda
 get '/:short_url' do
   redirect to('/') if Url.where(short_url: params[:short_url]).empty?
-  @full_url = Url.where(short_url: params[:short_url]).first.url
-  redirect to("#{@full_url}")
+  @url = Url.where(short_url: params[:short_url]).first
+  @url.counter += 1
+  @url.save
+  redirect to("#{@url.url}")
 end
 
 post '/urls' do

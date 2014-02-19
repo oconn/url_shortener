@@ -1,5 +1,5 @@
 <h2>Your short URL is:</h2>
-<p><%= @full_url %> redirects to:</p>
+<p><%= @url.url %> redirects to:</p>
 <p><%= "http:// mn.com/#{params[:short_url]}" %></p>
 
 <h2>New URL</h2>
@@ -7,3 +7,9 @@
   <input type="text" name="url" value="http://"></input>
   <input type="submit" value="Get Short!"></input>
 </form>
+
+<br>
+<br>
+<br>
+<br>
+<p>Counter - <%= @url.counter %></p>

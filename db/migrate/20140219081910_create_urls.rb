@@ -3,6 +3,7 @@ class CreateUrls < ActiveRecord::Migration
     create_table :urls do |t|
       t.string :url
       t.string :short_url
+      t.integer :counter, default: 0
 
       t.timestamps
     end
