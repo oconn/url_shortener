@@ -8,7 +8,7 @@ get '/:short_url' do
 end
 
 post '/urls' do
-  puts params
+  short_url = Url.gen_short_url
   # create a new Url
   # erb :index
 end
