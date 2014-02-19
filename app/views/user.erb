@@ -1,6 +1,13 @@
-<h1>Here are your URLs<h1>
+<h1>Here are your URLs</h1>
+<% @user.urls.each do |url| %>
+  <p>Counter: <%= url.counter %> Original URL: <%= url.url %> | Short URL: <a href="/<%= url.short_url %>">http://mn.com/<%= url.short_url %></a></p>
+<% end %>
 <h2>Url Shortener</h2>
   <form action="/user/url" method="post">
     <input type="text" name="url" value="http://"></input>
     <input type="submit" value="Get Short!"></input>
   </form>
+
+<form style="margin:4em auto;" action="/sign_out" method="post">
+  <input type="submit" value="sign out">
+</form>

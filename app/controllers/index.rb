@@ -28,8 +28,14 @@ post '/sign_in' do
 
 end
 
-get '/user/:username' do
+post '/sign_out' do
+  session[:user_id] = nil
+  redirect to('/')
+end
 
+get '/user/:username' do
+  redirect to("/") if session[:user_id].nil?
+  @user = User.where(id: session[:user_id]).first
   erb :user
 end
 
@@ -44,8 +50,12 @@ post '/urls' do
 end
 
 post '/user/url' do
-  user = User.where(id: session[:user_id])
-  if Url.where(url: params[:url], user_id: user.id)
+  redirect to("/") if session[:user_id] == nil
+  @user = User.where(id: session[:user_id]).first
+  if Url.where(url: params[:url], user_id: @user.id).length == 0
+    Url.create(url: params[:url], short_url: gen_short_url, user_id: @user.id)
+  end
+  redirect to("/user/#{@user.email}")
 end
 
 
