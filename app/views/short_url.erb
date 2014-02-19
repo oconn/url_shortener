@@ -1,0 +1,8 @@
+<h2>Your short URL is:</h2>
+<p><%= "http://www.mn.com/#{params[:short_url]}" %></p>
+
+<h2>New URL</h2>
+<form action="/urls" method="post">
+  <input type="text" name="url" value="http://"></input>
+  <input type="submit" value="Get Short!"></input>
+</form>
