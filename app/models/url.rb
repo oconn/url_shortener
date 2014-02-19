@@ -1,3 +1,3 @@
 class Url < ActiveRecord::Base
-  # Remember to create a migration!
+  validates_format_of :url, :with => URI::regexp(%w(http https)), presence: :true
 end
