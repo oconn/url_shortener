@@ -19,13 +19,17 @@ end
 
 post '/sign_up' do
   redirect to('/') if !validate_passwords(params[:password], params[:password_confirmation])
-  user = User.create(name: params[:name], email: params[:email], password: params[:password])
-  session[:user_id] = user.id
+  @user = User.create(name: params[:name], email: params[:email], password: params[:password])
+  session[:user_id] = @user.id
   redirect to "/user/#{params[:email]}"
 end
 
 post '/sign_in' do
-
+  redirect to('/') if User.where(email: params[:email]).empty?
+  @user = User.where(email: params[:email]).first
+  redirect to('/') if @user.password != params[:password]
+  session[:user_id] = @user.id
+  redirect to("/user/#{@user.email}")
 end
 
 post '/sign_out' do

@@ -1,14 +1,19 @@
-<div class="container">
-  <h1 style="text-align: center;">Url Shortener</h1>
+<div style="width: 40%" class="container">
+  <h1 style="text-align: center;">Public Url Shortener (No sign in required!)</h1>
   <form style="text-align: center;" action="/urls" method="post">
     <input type="text" name="url" value="http://"></input>
     <input type="submit" value="Get Short!"></input>
   </form>
 
 
-
-
-
+<form style="text-align: center; margin: 5em auto;" action="/sign_in" method="post">
+  <h1>Already an existing user? Sign in!</h1>
+  <p>Email:</p>
+  <input type="text" name="email"></input>
+  <p>Password:</p>
+  <input type="password" name="password"></input><br>
+  <br><button>Sign-in</button>
+</form>
 
 
 <form style="text-align:center;margin:5em auto;" action="/sign_up" method="post">
